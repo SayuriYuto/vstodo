@@ -9,13 +9,21 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:vstodo.helloWorld",
+    "onCommand:vstodo.askQuestion"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "vstodo.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "vscode.askQuestion",
+        "category": "VSToDo",
+        "title": "Ask me Question"
       }
     ]
   },
