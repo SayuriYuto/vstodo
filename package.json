@@ -11,7 +11,8 @@
   ],
   "activationEvents": [
     "onCommand:vstodo.helloWorld",
-    "onCommand:vstodo.askQuestion"
+    "onCommand:vstodo.askQuestion",
+    "onCommand:vstodo.refresh"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -21,16 +22,21 @@
         "title": "Hello World"
       },
       {
-        "command": "vscode.askQuestion",
+        "command": "vstodo.askQuestion",
         "category": "VSToDo",
         "title": "Ask me Question"
+      },
+      {
+        "command": "vstodo.refresh",
+        "category": "VSToDo",
+        "title": "Refresh Webview"
       }
     ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack",
-    "watch": "webpack --watch",
+    "watch": "concurrently \"rollup -c -w\" \"webpack --mode development --watch\"",
     "package": "webpack --mode production --devtool hidden-source-map",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
@@ -39,17 +45,29 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.88.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@tsconfig/svelte": "^5.0.4",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
+    "@types/vscode": "^1.88.0",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
-    "eslint": "^8.57.0",
-    "typescript": "^5.3.3",
-    "ts-loader": "^9.5.1",
-    "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4",
     "@vscode/test-cli": "^0.0.8",
-    "@vscode/test-electron": "^2.3.9"
+    "@vscode/test-electron": "^2.3.9",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "rollup-plugin-svelte": "^7.2.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "svelte": "^4.2.13",
+    "svelte-check": "^3.6.9",
+    "svelte-preprocess": "^5.1.3",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   }
 }
