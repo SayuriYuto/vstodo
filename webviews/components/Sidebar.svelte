@@ -25,6 +25,24 @@
   {/each}
 </ul>
 
+<button
+  on:click={() => {
+    tsvscode.postMessage({
+      command: "onInfo",
+      text: "info Message",
+    });
+  }}>Click Me fro info</button
+>
+
+<button
+  on:click={() => {
+    tsvscode.postMessage({
+      command: "onError",
+      text: "Error Message",
+    });
+  }}>Click Me for error</button
+>
+
 <style>
   .complete {
     text-decoration: line-through;
